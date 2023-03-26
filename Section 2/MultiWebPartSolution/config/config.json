@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "hello-world-1-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/helloWorld1/HelloWorld1WebPart.js",
+          "manifest": "./src/webparts/helloWorld1/HelloWorld1WebPart.manifest.json"
+        }
+      ]
+    },
+    "hello-world-2-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/helloWorld2/HelloWorld2WebPart.js",
+          "manifest": "./src/webparts/helloWorld2/HelloWorld2WebPart.manifest.json"
+        }
+      ]
+    },
+    "hello-world-3-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/helloWorld3/HelloWorld3WebPart.js",
+          "manifest": "./src/webparts/helloWorld3/HelloWorld3WebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "HelloWorld1WebPartStrings": "lib/webparts/helloWorld1/loc/{locale}.js",
+    "HelloWorld2WebPartStrings": "lib/webparts/helloWorld2/loc/{locale}.js",
+    "HelloWorld3WebPartStrings": "lib/webparts/helloWorld3/loc/{locale}.js"
+  }
+}
