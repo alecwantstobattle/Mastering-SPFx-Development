@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "property-pane-controls",
+    "libraryId": "c89c3cca-e9ca-44ee-a7fe-7972049b3dce",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "property-pane-controls",
+    "solutionShortDescription": "property-pane-controls description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
