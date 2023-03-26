@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "getlistofalllists-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/getlistofalllists/GetlistofalllistsWebPart.js",
+          "manifest": "./src/webparts/getlistofalllists/GetlistofalllistsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "GetlistofalllistsWebPartStrings": "lib/webparts/getlistofalllists/loc/{locale}.js"
+  }
+}

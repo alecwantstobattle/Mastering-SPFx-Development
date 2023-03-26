@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "get-list-of-all-lists-demo-client-side-solution",
+    "id": "22aa522e-a444-4ef4-9e41-fae45053aa80",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "get-list-of-all-lists-demo description"
+      },
+      "longDescription": {
+        "default": "get-list-of-all-lists-demo description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "get-list-of-all-lists-demo Feature",
+        "description": "The feature that activates elements of the get-list-of-all-lists-demo solution.",
+        "id": "dcc1196d-f65c-41b2-9890-f1d6385deead",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/get-list-of-all-lists-demo.sppkg"
+  }
+}
