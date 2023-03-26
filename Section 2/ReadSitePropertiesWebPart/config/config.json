@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "read-site-properties-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/readSitePropertiesWebPart/ReadSitePropertiesWebPartWebPart.js",
+          "manifest": "./src/webparts/readSitePropertiesWebPart/ReadSitePropertiesWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ReadSitePropertiesWebPartWebPartStrings": "lib/webparts/readSitePropertiesWebPart/loc/{locale}.js"
+  }
+}
