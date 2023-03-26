@@ -66,6 +66,20 @@ export default class ReadSitePropertiesWebPartWebPart extends BaseClientSideWebP
     <p class="${styles.description}">User Name ${escape(
       this.context.pageContext.user.displayName
     )}</p>
+
+
+    <p class="${styles.description}">Environment ${Environment.type}</p>
+
+
+    <p class="${styles.description}">Type Of Environment ${
+      this.properties.environmenttitle
+    }</p>
+
+    <p class="${styles.description}">Display Mode ${
+      this.properties.displaymode
+    }</p>
+
+
       <a href="https://aka.ms/spfx" class="${styles.button}">
         <span class="${styles.label}">Learn more</span>
           </a>
