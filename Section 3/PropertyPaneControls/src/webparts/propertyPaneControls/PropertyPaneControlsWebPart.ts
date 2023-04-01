@@ -39,6 +39,10 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
     });
   }
 
+  protected get disableReactivePropertyChanges(): boolean {
+    return true;
+  }
+
   public render(): void {
     this.domElement.innerHTML = `
     <section class="${styles.propertyPaneControls} ${
