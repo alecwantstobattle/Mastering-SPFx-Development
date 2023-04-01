@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "multi-groups-web-part-client-side-solution",
+    "id": "19033d4b-0f2b-4009-90da-6175d99138e9",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "multi-groups-web-part description"
+      },
+      "longDescription": {
+        "default": "multi-groups-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "multi-groups-web-part Feature",
+        "description": "The feature that activates elements of the multi-groups-web-part solution.",
+        "id": "9ddb5fdb-e1de-4875-bfb1-c9caaa7a0884",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/multi-groups-web-part.sppkg"
+  }
+}

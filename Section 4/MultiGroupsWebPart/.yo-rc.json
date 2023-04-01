@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "multi-groups-web-part",
+    "libraryId": "19033d4b-0f2b-4009-90da-6175d99138e9",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "multi-groups-web-part",
+    "solutionShortDescription": "multi-groups-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
