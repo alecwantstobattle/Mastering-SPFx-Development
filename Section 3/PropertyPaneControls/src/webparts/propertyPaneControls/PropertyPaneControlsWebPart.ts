@@ -7,6 +7,7 @@ import {
   PropertyPaneChoiceGroup,
   PropertyPaneDropdown,
   PropertyPaneCheckbox,
+  PropertyPaneLink,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -270,6 +271,17 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                   text: 'Do You have a Discount Coupon?',
                   checked: false,
                   disabled: false,
+                }),
+                PropertyPaneLink('', {
+                  href: 'https://www.amazon.in',
+                  text: 'Buy Intel Processor from the best Seller',
+                  target: '_blank',
+                  popupWindowProps: {
+                    height: 500,
+                    width: 500,
+                    positionWindowPosition: 2,
+                    title: 'Amazon',
+                  },
                 }),
               ],
             },
