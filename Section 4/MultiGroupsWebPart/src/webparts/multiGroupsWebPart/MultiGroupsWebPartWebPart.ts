@@ -77,7 +77,7 @@ export default class MultiGroupsWebPartWebPart extends BaseClientSideWebPart<IMu
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription,
+            description: 'Page 1',
           },
           groups: [
             {
@@ -99,7 +99,79 @@ export default class MultiGroupsWebPartWebPart extends BaseClientSideWebPart<IMu
           ],
           displayGroupsAsAccordion: true,
         },
-      ],
+        {
+          header: {
+            description: 'Page 2',
+          },
+          groups: [
+            {
+              groupName: 'First Group',
+              groupFields: [
+                PropertyPaneTextField('productName', {
+                  label: 'Product Name 2',
+                }),
+              ],
+            },
+            {
+              groupName: 'Second Group',
+              groupFields: [
+                PropertyPaneToggle('isCertified', {
+                  label: 'Is Certified 2?',
+                }),
+              ],
+            },
+          ],
+          displayGroupsAsAccordion: true,
+        },
+        {
+          header: {
+            description: 'Page 3',
+          },
+          groups: [
+            {
+              groupName: 'First Group',
+              groupFields: [
+                PropertyPaneTextField('productName', {
+                  label: 'Product Name 3',
+                }),
+              ],
+            },
+            {
+              groupName: 'Second Group',
+              groupFields: [
+                PropertyPaneToggle('isCertified', {
+                  label: 'Is Certified 3?',
+                }),
+              ],
+            },
+          ],
+          displayGroupsAsAccordion: true,
+        },
+        {
+          header: {
+            description: 'Page 4',
+          },
+          groups: [
+            {
+              groupName: 'First Group',
+              groupFields: [
+                PropertyPaneTextField('productname', {
+                  label: 'Product Name 4',
+                }),
+              ],
+            },
+            {
+              groupName: 'Second Group',
+              groupFields: [
+                PropertyPaneToggle('isCertified', {
+                  label: 'Is Certified 4?',
+                }),
+              ],
+            },
+          ],
+          displayGroupsAsAccordion: true,
+        },
+      ], //array of pages end
     };
   }
 }
