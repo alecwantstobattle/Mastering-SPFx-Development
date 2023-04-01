@@ -3,6 +3,7 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField,
   PropertyPaneToggle,
+  PropertyPaneSlider,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -24,6 +25,7 @@ export interface IPropertyPaneControlsWebPartProps {
 
   currentTime: Date;
   isCertified: boolean;
+  rating: number;
 }
 
 export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<IPropertyPaneControlsWebPartProps> {
@@ -52,49 +54,48 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
     <section class="${styles.propertyPaneControls} ${
       !!this.context.sdks.microsoftTeams ? styles.teams : ''
     }">
-    <table>   
-    <tr>
-    <td>Product Name</td>
-    <td>${this.properties.productName}</td>
-    </tr>
-    <tr>
-    <td>Description</td>
-    <td>${this.properties.productDescription}</td>
-    </tr>
-    <tr>
-    <td>Product Cost</td>
-    <td>${this.properties.productCost}</td>
-    </tr>
-    <tr>
-    <td>Product Quantity</td>
-    <td>${this.properties.quantity}</td>
-    </tr>
-    <tr>
+      <table>   
+        <tr>
+          <td>Product Name</td>
+          <td>${this.properties.productName}</td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td>${this.properties.productDescription}</td>
+        </tr>
+        <tr>
+          <td>Product Cost</td>
+          <td>${this.properties.productCost}</td>
+        </tr>
+        <tr>
+          <td>Product Quantity</td>
+          <td>${this.properties.quantity}</td>
+        </tr>
+        <tr>
           <td>Bill Amount</td>
           <td>${(this.properties.billAmount =
             this.properties.productCost * this.properties.quantity)} </td>
-    </tr>
-          <tr>
+        </tr>
+        <tr>
           <td>Discount</td>
           <td>${(this.properties.discount =
             (this.properties.billAmount * 10) / 100)}</td>
-          </tr>
-
-          <tr>
+        </tr>
+        <tr>
           <td>Net Bill Amount</td>
           <td>${(this.properties.netBillAmount =
             this.properties.billAmount - this.properties.discount)}</td>
-          </tr>          
-          <tr>
-              <td>
-              Is Certified?
-              </td>
-              <td>
-              ${this.properties.isCertified}
-              </td>
-             </tr>
-     </tr>
-    </table>
+        </tr>          
+        <tr>
+          <td>Is Certified?</td>
+          <td>${this.properties.isCertified}</td>
+        </tr>
+        </tr>
+        <tr>
+          <td>Rating</td>
+          <td>${this.properties.rating}</td>
+        </tr>
+      </table>
     </section>`;
   }
 
@@ -146,7 +147,6 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                   placeholder: 'Please enter product name',
                   description: 'Name property field',
                 }),
-
                 PropertyPaneTextField('productDescription', {
                   label: 'Product Description',
                   multiline: true,
@@ -155,7 +155,6 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                   placeholder: 'Please enter Product Description',
                   description: 'Name property field',
                 }),
-
                 PropertyPaneTextField('productCost', {
                   label: 'Product Cost',
                   multiline: false,
@@ -164,7 +163,6 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                   placeholder: 'Please enter product Cost',
                   description: 'Number property field',
                 }),
-
                 PropertyPaneTextField('quantity', {
                   label: 'Product Quantity',
                   multiline: false,
@@ -173,12 +171,19 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                   placeholder: 'Please enter product Quantity',
                   description: 'Number property field',
                 }),
-
                 PropertyPaneToggle('isCertified', {
                   key: 'isCertified',
                   label: 'Is it Certified?',
                   onText: 'ISI Certified!',
                   offText: 'Not an ISI Certified Product',
+                }),
+                PropertyPaneSlider('rating', {
+                  label: 'Select Your Rating',
+                  min: 1,
+                  max: 10,
+                  step: 1,
+                  showValue: true,
+                  value: 1,
                 }),
               ],
             },
