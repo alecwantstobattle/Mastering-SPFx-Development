@@ -28,6 +28,7 @@ export interface IPropertyPaneControlsWebPartProps {
   isCertified: boolean;
   rating: number;
   processorType: string;
+  invoiceFileType: string;
 }
 
 export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<IPropertyPaneControlsWebPartProps> {
@@ -101,6 +102,10 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
           <td>Processor Type</td>
           <td>${this.properties.processorType}</td>
         </tr>
+        <tr>
+            <td>Invoice File Type</td>
+            <td>${this.properties.invoiceFileType}</td>
+           </tr>
       </table>
     </section>`;
   }
@@ -197,6 +202,47 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                     { key: 'I5', text: 'Intel I5' },
                     { key: 'I7', text: 'Intel I7', checked: true },
                     { key: 'I9', text: 'Intel I9' },
+                  ],
+                }),
+                PropertyPaneChoiceGroup('invoiceFileType', {
+                  label: 'Select Invoice File type:',
+                  options: [
+                    {
+                      key: 'MSWord',
+                      text: 'MSWord',
+                      imageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/docx_32x1.png',
+                      imageSize: { width: 32, height: 32 },
+                      selectedImageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/docx_32x1.png',
+                    },
+                    {
+                      key: 'MSExcel',
+                      text: 'MSExcel',
+                      imageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/xlsx_32x1.png',
+                      imageSize: { width: 32, height: 32 },
+                      selectedImageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/xlsx_32x1.png',
+                    },
+                    {
+                      key: 'MSPowerPoint',
+                      text: 'MSPowerPoint',
+                      imageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/pptx_32x1.png',
+                      imageSize: { width: 32, height: 32 },
+                      selectedImageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/pptx_32x1.png',
+                    },
+                    {
+                      key: 'OneNote',
+                      text: 'OneNote',
+                      imageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/one_32x1.png',
+                      imageSize: { width: 32, height: 32 },
+                      selectedImageSrc:
+                        'https://static2.sharepointonline.com/files/fabric/assets/brand-icons/document/png/one_32x1.png',
+                    },
                   ],
                 }),
               ],
