@@ -6,6 +6,7 @@ import {
   PropertyPaneSlider,
   PropertyPaneChoiceGroup,
   PropertyPaneDropdown,
+  PropertyPaneCheckbox,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -31,6 +32,7 @@ export interface IPropertyPaneControlsWebPartProps {
   processorType: string;
   invoiceFileType: string;
   newProcessorType: string;
+  discountCoupon: boolean;
 }
 
 export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<IPropertyPaneControlsWebPartProps> {
@@ -111,6 +113,10 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
         <tr>
            <td>New Processor Type</td>
            <td>${this.properties.newProcessorType}</td>
+        </tr>
+        <tr>
+          <td>Do u have a discount coupon?</td>
+          <td>${this.properties.discountCoupon}</td>
         </tr>
       </table>
     </section>`;
@@ -259,6 +265,11 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                     { key: 'I9', text: 'Intel I9' },
                   ],
                   selectedKey: 'I7',
+                }),
+                PropertyPaneCheckbox('discountCoupon', {
+                  text: 'Do You have a Discount Coupon?',
+                  checked: false,
+                  disabled: false,
                 }),
               ],
             },
