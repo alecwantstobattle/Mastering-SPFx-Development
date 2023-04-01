@@ -35,7 +35,8 @@
         "quantity": 20,
         "billAmount": 0,
         "discount": 0,
-        "netBillAmount": 0
+        "netBillAmount": 0,
+        "isCertified": false
       }
     }
   ]

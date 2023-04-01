@@ -2,6 +2,7 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField,
+  PropertyPaneToggle,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -20,6 +21,9 @@ export interface IPropertyPaneControlsWebPartProps {
   billAmount: number;
   discount: number;
   netBillAmount: number;
+
+  currentTime: Date;
+  isCertified: boolean;
 }
 
 export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<IPropertyPaneControlsWebPartProps> {
@@ -40,7 +44,7 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
   }
 
   protected get disableReactivePropertyChanges(): boolean {
-    return true;
+    return false;
   }
 
   public render(): void {
@@ -81,6 +85,14 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
           <td>${(this.properties.netBillAmount =
             this.properties.billAmount - this.properties.discount)}</td>
           </tr>          
+          <tr>
+              <td>
+              Is Certified?
+              </td>
+              <td>
+              ${this.properties.isCertified}
+              </td>
+             </tr>
      </tr>
     </table>
     </section>`;
@@ -160,6 +172,13 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
                   deferredValidationTime: 5000,
                   placeholder: 'Please enter product Quantity',
                   description: 'Number property field',
+                }),
+
+                PropertyPaneToggle('isCertified', {
+                  key: 'isCertified',
+                  label: 'Is it Certified?',
+                  onText: 'ISI Certified!',
+                  offText: 'Not an ISI Certified Product',
                 }),
               ],
             },
