@@ -29,7 +29,14 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
   protected onInit(): Promise<void> {
     this._environmentMessage = this._getEnvironmentMessage();
 
-    return super.onInit();
+    return new Promise<void>((resolve, _reject) => {
+      this.properties.productName = 'Mouse';
+      this.properties.productDescription = 'Mouse Description';
+      this.properties.quantity = 500;
+      this.properties.productCost = 300;
+
+      resolve(undefined);
+    });
   }
 
   public render(): void {
