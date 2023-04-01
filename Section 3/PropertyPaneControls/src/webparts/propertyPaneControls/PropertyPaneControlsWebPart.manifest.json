@@ -28,7 +28,14 @@
       "description": { "default": "PropertyPaneControls description" },
       "officeFabricIconFontName": "Page",
       "properties": {
-        "description": "My New PropertyPaneControls Description"
+        "description": "My New PropertyPaneControls Description",
+        "productDescription": "Keyboard Description",
+        "productName": "Keyboard",
+        "productCost": 100,
+        "quantity": 20,
+        "billAmount": 0,
+        "discount": 0,
+        "netBillAmount": 0
       }
     }
   ]
