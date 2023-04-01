@@ -1,7 +1,7 @@
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -12,10 +12,17 @@ import * as strings from 'PropertyPaneControlsWebPartStrings';
 
 export interface IPropertyPaneControlsWebPartProps {
   description: string;
+
+  productName: string;
+  productDescription: string;
+  productCost: number;
+  quantity: number;
+  billAmount: number;
+  discount: number;
+  netBillAmount: number;
 }
 
 export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<IPropertyPaneControlsWebPartProps> {
-
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
 
@@ -27,38 +34,58 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
 
   public render(): void {
     this.domElement.innerHTML = `
-    <section class="${styles.propertyPaneControls} ${!!this.context.sdks.microsoftTeams ? styles.teams : ''}">
-      <div class="${styles.welcome}">
-        <img alt="" src="${this._isDarkTheme ? require('./assets/welcome-dark.png') : require('./assets/welcome-light.png')}" class="${styles.welcomeImage}" />
-        <h2>Well done, ${escape(this.context.pageContext.user.displayName)}!</h2>
-        <div>${this._environmentMessage}</div>
-        <div>Web part property value: <strong>${escape(this.properties.description)}</strong></div>
-      </div>
-      <div>
-        <h3>Welcome to SharePoint Framework!</h3>
-        <p>
-        The SharePoint Framework (SPFx) is a extensibility model for Microsoft Viva, Microsoft Teams and SharePoint. It's the easiest way to extend Microsoft 365 with automatic Single Sign On, automatic hosting and industry standard tooling.
-        </p>
-        <h4>Learn more about SPFx development:</h4>
-          <ul class="${styles.links}">
-            <li><a href="https://aka.ms/spfx" target="_blank">SharePoint Framework Overview</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-graph" target="_blank">Use Microsoft Graph in your solution</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-teams" target="_blank">Build for Microsoft Teams using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-viva" target="_blank">Build for Microsoft Viva Connections using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-store" target="_blank">Publish SharePoint Framework applications to the marketplace</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-api" target="_blank">SharePoint Framework API reference</a></li>
-            <li><a href="https://aka.ms/m365pnp" target="_blank">Microsoft 365 Developer Community</a></li>
-          </ul>
-      </div>
+    <section class="${styles.propertyPaneControls} ${
+      !!this.context.sdks.microsoftTeams ? styles.teams : ''
+    }">
+    <table>   
+    <tr>
+    <td>Product Name</td>
+    <td>${this.properties.productName}</td>
+    </tr>
+    <tr>
+    <td>Description</td>
+    <td>${this.properties.productDescription}</td>
+    </tr>
+    <tr>
+    <td>Product Cost</td>
+    <td>${this.properties.productCost}</td>
+    </tr>
+    <tr>
+    <td>Product Quantity</td>
+    <td>${this.properties.quantity}</td>
+    </tr>
+    <tr>
+          <td>Bill Amount</td>
+          <td>${(this.properties.billAmount =
+            this.properties.productCost * this.properties.quantity)} </td>
+    </tr>
+          <tr>
+          <td>Discount</td>
+          <td>${(this.properties.discount =
+            (this.properties.billAmount * 10) / 100)}</td>
+          </tr>
+
+          <tr>
+          <td>Net Bill Amount</td>
+          <td>${(this.properties.netBillAmount =
+            this.properties.billAmount - this.properties.discount)}</td>
+          </tr>          
+     </tr>
+    </table>
     </section>`;
   }
 
   private _getEnvironmentMessage(): string {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams
-      return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
+    if (!!this.context.sdks.microsoftTeams) {
+      // running in Teams
+      return this.context.isServedFromLocalhost
+        ? strings.AppLocalEnvironmentTeams
+        : strings.AppTeamsTabEnvironment;
     }
 
-    return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment;
+    return this.context.isServedFromLocalhost
+      ? strings.AppLocalEnvironmentSharePoint
+      : strings.AppSharePointEnvironment;
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
@@ -67,13 +94,13 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
     }
 
     this._isDarkTheme = !!currentTheme.isInverted;
-    const {
-      semanticColors
-    } = currentTheme;
+    const { semanticColors } = currentTheme;
     this.domElement.style.setProperty('--bodyText', semanticColors.bodyText);
     this.domElement.style.setProperty('--link', semanticColors.link);
-    this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered);
-
+    this.domElement.style.setProperty(
+      '--linkHovered',
+      semanticColors.linkHovered
+    );
   }
 
   protected get dataVersion(): Version {
@@ -84,21 +111,50 @@ export default class PropertyPaneControlsWebPart extends BaseClientSideWebPart<I
     return {
       pages: [
         {
-          header: {
-            description: strings.PropertyPaneDescription
-          },
           groups: [
             {
-              groupName: strings.BasicGroupName,
+              groupName: 'Product Details',
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
+                PropertyPaneTextField('productName', {
+                  label: 'Product Name',
+                  multiline: false,
+                  resizable: false,
+                  deferredValidationTime: 5000,
+                  placeholder: 'Please enter product name',
+                  description: 'Name property field',
+                }),
+
+                PropertyPaneTextField('productDescription', {
+                  label: 'Product Description',
+                  multiline: true,
+                  resizable: false,
+                  deferredValidationTime: 5000,
+                  placeholder: 'Please enter Product Description',
+                  description: 'Name property field',
+                }),
+
+                PropertyPaneTextField('productCost', {
+                  label: 'Product Cost',
+                  multiline: false,
+                  resizable: false,
+                  deferredValidationTime: 5000,
+                  placeholder: 'Please enter product Cost',
+                  description: 'Number property field',
+                }),
+
+                PropertyPaneTextField('quantity', {
+                  label: 'Product Quantity',
+                  multiline: false,
+                  resizable: false,
+                  deferredValidationTime: 5000,
+                  placeholder: 'Please enter product Quantity',
+                  description: 'Number property field',
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
   }
 }
