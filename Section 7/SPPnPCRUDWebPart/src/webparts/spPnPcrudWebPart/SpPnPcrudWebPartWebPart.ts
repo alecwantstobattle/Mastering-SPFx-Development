@@ -94,6 +94,12 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
     this.domElement.querySelector('#btnRead').addEventListener('click', () => {
       this.readListItem();
     });
+
+    this.domElement
+      .querySelector('#btnUpdate')
+      .addEventListener('click', () => {
+        this.updateListItem();
+      });
   }
 
   private addListItem(): void {
@@ -141,6 +147,33 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
           item['SoftwareDescription'];
         document.getElementById('ddlSoftwareVendor')['value'] =
           item['SoftwareVendor'];
+      });
+  }
+
+  private updateListItem(): void {
+    var title = document.getElementById('txtSoftwareTitle')['value'];
+    var softwareVendor = document.getElementById('ddlSoftwareVendor')['value'];
+    var softwareDescription = document.getElementById('txtSoftwareDescription')[
+      'value'
+    ];
+    var softwareName = document.getElementById('txtSoftwareName')['value'];
+    var softwareVersion =
+      document.getElementById('txtSoftwareVersion')['value'];
+
+    let id: number = document.getElementById('txtID')['value'];
+
+    pnp.sp.web.lists
+      .getByTitle('SoftwareCatalog')
+      .items.getById(id)
+      .update({
+        Title: title,
+        SoftwareVendor: softwareVendor,
+        SoftwareName: softwareName,
+        SoftwareDescription: softwareDescription,
+        SoftwareVersion: softwareVersion,
+      })
+      .then((r) => {
+        alert('Details Updated');
       });
   }
 
