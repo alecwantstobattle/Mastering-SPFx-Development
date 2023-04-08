@@ -15,6 +15,7 @@ import {
   SPHttpClient,
   SPHttpClientResponse,
 } from '@microsoft/sp-http';
+import { ISoftwareListItem } from './ISoftwareListItem';
 
 export interface ICrudWebPartWebPartProps {
   description: string;
@@ -90,6 +91,10 @@ export default class CrudWebPartWebPart extends BaseClientSideWebPart<ICrudWebPa
       .addEventListener('click', () => {
         this.addListItem();
       });
+
+    this.domElement.querySelector('#btnRead').addEventListener('click', () => {
+      this.readListItem();
+    });
   }
 
   private addListItem(): void {
@@ -144,6 +149,43 @@ export default class CrudWebPartWebPart extends BaseClientSideWebPart<ICrudWebPa
     document.getElementById('txtSoftwareDescription')['value'] = '';
     document.getElementById('txtSoftwareVersion')['value'] = '';
     document.getElementById('txtSoftwareName')['value'] = '';
+  }
+
+  private readListItem(): void {
+    let id: string = document.getElementById('txtID')['value'];
+    this._getListItemByID(id)
+      .then((listItem) => {
+        document.getElementById('txtSoftwareTitle')['value'] = listItem.Title;
+        document.getElementById('ddlSoftwareVendor')['value'] =
+          listItem.SoftwareVendor;
+        document.getElementById('txtSoftwareDescription')['value'] =
+          listItem.SoftwareDescription;
+        document.getElementById('txtSoftwareName')['value'] =
+          listItem.SoftwareName;
+        document.getElementById('txtSoftwareVersion')['value'] =
+          listItem.SoftwareVersion;
+      })
+      .catch((error) => {
+        let message: Element = this.domElement.querySelector('#divStatus');
+        message.innerHTML = 'Read: Could not fetch details.. ' + error.message;
+      });
+  }
+
+  private _getListItemByID(id: string): Promise<ISoftwareListItem> {
+    const url: string =
+      this.context.pageContext.site.absoluteUrl +
+      "/_api/web/lists/getbytitle('SoftwareCatalog')/items?$filter=Id eq " +
+      id;
+    return this.context.spHttpClient
+      .get(url, SPHttpClient.configurations.v1)
+      .then((response: SPHttpClientResponse) => {
+        return response.json();
+      })
+      .then((listItems: any) => {
+        const untypedItem: any = listItems.value[0];
+        const listItem: ISoftwareListItem = untypedItem as ISoftwareListItem;
+        return listItem;
+      }) as Promise<ISoftwareListItem>;
   }
 
   private _getEnvironmentMessage(): string {
