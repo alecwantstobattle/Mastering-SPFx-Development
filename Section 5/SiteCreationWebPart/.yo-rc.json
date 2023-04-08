@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "site-creation-web-part",
+    "libraryId": "eccf64c3-7665-40cb-88a7-10520bb337d4",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "site-creation-web-part",
+    "solutionShortDescription": "site-creation-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

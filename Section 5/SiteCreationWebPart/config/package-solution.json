@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "site-creation-web-part-client-side-solution",
+    "id": "eccf64c3-7665-40cb-88a7-10520bb337d4",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "site-creation-web-part description"
+      },
+      "longDescription": {
+        "default": "site-creation-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "site-creation-web-part Feature",
+        "description": "The feature that activates elements of the site-creation-web-part solution.",
+        "id": "12144600-cd3b-4413-ae46-8d562c930b14",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/site-creation-web-part.sppkg"
+  }
+}
