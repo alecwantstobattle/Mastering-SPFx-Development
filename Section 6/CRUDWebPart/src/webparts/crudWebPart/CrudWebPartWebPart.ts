@@ -83,6 +83,7 @@ export default class CrudWebPartWebPart extends BaseClientSideWebPart<ICrudWebPa
       <div id="divStatus"/>
     </section>`;
     this._bindEvents();
+    this.readAllItems();
   }
 
   private _bindEvents(): void {
@@ -282,6 +283,30 @@ export default class CrudWebPartWebPart extends BaseClientSideWebPart<ICrudWebPa
       });
   }
 
+  private readAllItems(): void {
+    this._getListItems().then((listItems) => {
+      let html: string =
+        '<table border=1 width=100% style="border-collapse: collapse;">';
+      html +=
+        '<th>Title</th> <th>Vendor</th><th>Description</th><th>Name</th><th>Version</th>';
+
+      listItems.forEach((listItem) => {
+        html += `<tr>            
+      <td>${listItem.Title}</td>
+      <td>${listItem.SoftwareVendor}</td>
+      <td>${listItem.SoftwareDescription}</td>
+      <td>${listItem.SoftwareName}</td>
+      <td>${listItem.SoftwareVersion}</td>      
+      </tr>`;
+      });
+      html += '</table>';
+      const listContainer: Element =
+        this.domElement.querySelector('#divStatus');
+
+      listContainer.innerHTML = html;
+    });
+  }
+
   private _getEnvironmentMessage(): string {
     if (!!this.context.sdks.microsoftTeams) {
       // running in Teams
@@ -308,6 +333,20 @@ export default class CrudWebPartWebPart extends BaseClientSideWebPart<ICrudWebPa
       '--linkHovered',
       semanticColors.linkHovered
     );
+  }
+
+  private _getListItems(): Promise<ISoftwareListItem[]> {
+    const url: string =
+      this.context.pageContext.site.absoluteUrl +
+      "/_api/web/lists/getbytitle('SoftwareCatalog')/items";
+    return this.context.spHttpClient
+      .get(url, SPHttpClient.configurations.v1)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        return json.value;
+      }) as Promise<ISoftwareListItem[]>;
   }
 
   protected get dataVersion(): Version {
