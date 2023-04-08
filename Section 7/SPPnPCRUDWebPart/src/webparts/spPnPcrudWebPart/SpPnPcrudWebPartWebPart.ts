@@ -82,6 +82,7 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
       </div>
     </section>`;
     this._bindEvents();
+    this.readAllItems();
   }
 
   private _bindEvents(): void {
@@ -174,6 +175,31 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
       })
       .then((r) => {
         alert('Details Updated');
+      });
+  }
+
+  public readAllItems(): void {
+    let html: string =
+      '<table border=1 width=100% style="bordercollapse: collapse;">';
+    html += `<th>Title</th><th>Vendor</th><th>Name</th><th>Version</th><th>Description</th>`;
+
+    pnp.sp.web.lists
+      .getByTitle('SoftwareCatalog')
+      .items.get()
+      .then((items: any[]) => {
+        items.forEach(function (item) {
+          html += `<tr>
+            <td>${item['Title']}</td>
+            <td>${item['SoftwareVendor']}</td>
+            <td>${item['SoftwareName']}</td>
+            <td>${item['SoftwareVersion']}</td>
+            <td>${item['SoftwareDescription']}</td>
+            </tr>
+            `;
+        });
+        html += `</table>`;
+        const allitems: Element = this.domElement.querySelector('#spListData');
+        allitems.innerHTML = html;
       });
   }
 
