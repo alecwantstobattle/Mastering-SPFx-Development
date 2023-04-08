@@ -101,6 +101,12 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
       .addEventListener('click', () => {
         this.updateListItem();
       });
+
+    this.domElement
+      .querySelector('#btnDelete')
+      .addEventListener('click', () => {
+        this.deleteListItem();
+      });
   }
 
   private addListItem(): void {
@@ -201,6 +207,12 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
         const allitems: Element = this.domElement.querySelector('#spListData');
         allitems.innerHTML = html;
       });
+  }
+
+  private deleteListItem(): void {
+    const id = document.getElementById('txtID')['value'];
+    pnp.sp.web.lists.getByTitle('SoftwareCatalog').items.getById(id).delete();
+    alert('list item Deleted');
   }
 
   private _getEnvironmentMessage(): string {
