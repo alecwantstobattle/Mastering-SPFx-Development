@@ -23,7 +23,11 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
   protected onInit(): Promise<void> {
     this._environmentMessage = this._getEnvironmentMessage();
 
-    return super.onInit();
+    return super.onInit().then(() => {
+      pnp.setup({
+        spfxContext: this.context,
+      });
+    });
   }
 
   public render(): void {
