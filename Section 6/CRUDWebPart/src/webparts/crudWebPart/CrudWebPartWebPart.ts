@@ -95,6 +95,18 @@ export default class CrudWebPartWebPart extends BaseClientSideWebPart<ICrudWebPa
     this.domElement.querySelector('#btnRead').addEventListener('click', () => {
       this.readListItem();
     });
+
+    this.domElement
+      .querySelector('#btnUpdate')
+      .addEventListener('click', () => {
+        this.updateListItem();
+      });
+
+    this.domElement
+      .querySelector('#btnDelete')
+      .addEventListener('click', () => {
+        this.deleteListItem();
+      });
   }
 
   private addListItem(): void {
@@ -186,6 +198,88 @@ export default class CrudWebPartWebPart extends BaseClientSideWebPart<ICrudWebPa
         const listItem: ISoftwareListItem = untypedItem as ISoftwareListItem;
         return listItem;
       }) as Promise<ISoftwareListItem>;
+  }
+
+  private updateListItem(): void {
+    var title = document.getElementById('txtSoftwareTitle')['value'];
+    var softwareVendor = document.getElementById('ddlSoftwareVendor')['value'];
+    var softwareDescription = document.getElementById('txtSoftwareDescription')[
+      'value'
+    ];
+    var softwareName = document.getElementById('txtSoftwareName')['value'];
+    var softwareVersion =
+      document.getElementById('txtSoftwareVersion')['value'];
+
+    let id: string = document.getElementById('txtID')['value'];
+
+    const url: string =
+      this.context.pageContext.site.absoluteUrl +
+      "/_api/web/lists/getbytitle('SoftwareCatalog')/items(" +
+      id +
+      ')';
+    const itemBody: any = {
+      Title: title,
+      SoftwareVendor: softwareVendor,
+      SoftwareDescription: softwareDescription,
+      SoftwareName: softwareName,
+      SoftwareVersion: softwareVersion,
+    };
+    const headers: any = {
+      'X-HTTP-Method': 'MERGE',
+      'IF-MATCH': '*',
+    };
+
+    const spHttpClientOptions: ISPHttpClientOptions = {
+      headers: headers,
+      body: JSON.stringify(itemBody),
+    };
+
+    this.context.spHttpClient
+      .post(url, SPHttpClient.configurations.v1, spHttpClientOptions)
+      .then((response: SPHttpClientResponse) => {
+        if (response.status === 204) {
+          let message: Element = this.domElement.querySelector('#divStatus');
+          message.innerHTML = 'List Item has been updated successfully.';
+        } else {
+          let message: Element = this.domElement.querySelector('#divStatus');
+          message.innerHTML =
+            'List Item updation failed. ' +
+            response.status +
+            ' - ' +
+            response.statusText;
+        }
+      });
+  }
+
+  private deleteListItem(): void {
+    let id: string = document.getElementById('txtID')['value'];
+    const url: string =
+      this.context.pageContext.site.absoluteUrl +
+      "/_api/web/lists/getbytitle('SoftwareCatalog')/items(" +
+      id +
+      ')';
+    const headers: any = { 'X-HTTP-Method': 'DELETE', 'IF-MATCH': '*' };
+
+    const spHttpClientOptions: ISPHttpClientOptions = {
+      headers: headers,
+    };
+
+    this.context.spHttpClient
+      .post(url, SPHttpClient.configurations.v1, spHttpClientOptions)
+      .then((response: SPHttpClientResponse) => {
+        if (response.status === 204) {
+          let message: Element = this.domElement.querySelector('#divStatus');
+          message.innerHTML =
+            'Delete: List Item has been deleted successfully.';
+        } else {
+          let message: Element = this.domElement.querySelector('#divStatus');
+          message.innerHTML =
+            'Failed to Delete...' +
+            response.status +
+            ' - ' +
+            response.statusText;
+        }
+      });
   }
 
   private _getEnvironmentMessage(): string {
