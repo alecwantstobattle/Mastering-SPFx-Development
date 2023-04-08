@@ -90,6 +90,10 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
       .addEventListener('click', () => {
         this.addListItem();
       });
+
+    this.domElement.querySelector('#btnRead').addEventListener('click', () => {
+      this.readListItem();
+    });
   }
 
   private addListItem(): void {
@@ -117,6 +121,26 @@ export default class SpPnPcrudWebPartWebPart extends BaseClientSideWebPart<ISpPn
       })
       .then((r) => {
         alert('success');
+      });
+  }
+
+  private readListItem(): void {
+    const id = document.getElementById('txtID')['value'];
+
+    pnp.sp.web.lists
+      .getByTitle('SoftwareCatalog')
+      .items.getById(id)
+      .get()
+      .then((item: any) => {
+        document.getElementById('txtSoftwareTitle')['value'] = item['Title'];
+        document.getElementById('txtSoftwareName')['value'] =
+          item['SoftwareName'];
+        document.getElementById('txtSoftwareVersion')['value'] =
+          item['SoftwareVersion'];
+        document.getElementById('txtSoftwareDescription')['value'] =
+          item['SoftwareDescription'];
+        document.getElementById('ddlSoftwareVendor')['value'] =
+          item['SoftwareVendor'];
       });
   }
 
