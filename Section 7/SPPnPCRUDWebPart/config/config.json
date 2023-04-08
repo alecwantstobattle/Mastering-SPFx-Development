@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-pn-pcrud-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spPnPcrudWebPart/SpPnPcrudWebPartWebPart.js",
+          "manifest": "./src/webparts/spPnPcrudWebPart/SpPnPcrudWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SpPnPcrudWebPartWebPartStrings": "lib/webparts/spPnPcrudWebPart/loc/{locale}.js"
+  }
+}

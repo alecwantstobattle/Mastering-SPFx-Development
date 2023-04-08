@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-pnp-crud-webpart-client-side-solution",
+    "id": "970e2b33-a02e-40bb-b081-b1ce30daf148",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "sp-pnp-crud-webpart description"
+      },
+      "longDescription": {
+        "default": "sp-pnp-crud-webpart description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "sp-pnp-crud-webpart Feature",
+        "description": "The feature that activates elements of the sp-pnp-crud-webpart solution.",
+        "id": "264a987e-71c7-4b29-bd05-5c3f9c38481a",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-pnp-crud-webpart.sppkg"
+  }
+}
