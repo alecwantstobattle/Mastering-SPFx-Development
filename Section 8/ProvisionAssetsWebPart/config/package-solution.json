@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "provision-assets-web-part-client-side-solution",
+    "id": "ea04d096-711c-451b-bfeb-7ca7021b48ca",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "provision-assets-web-part description"
+      },
+      "longDescription": {
+        "default": "provision-assets-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "Provision SharePoint Assets Feature",
+        "description": "The feature that activates elements of the Provision SharePoint Assets solution.",
+        "id": "c025675a-cf4c-4998-b76f-9904498788be",
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": ["elements.xml"],
+          "elementFiles": ["schema.xml"]
+        }
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/provision-assets-web-part.sppkg"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "provision-assets-web-part",
+    "libraryId": "ea04d096-711c-451b-bfeb-7ca7021b48ca",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "provision-assets-web-part",
+    "solutionShortDescription": "provision-assets-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
