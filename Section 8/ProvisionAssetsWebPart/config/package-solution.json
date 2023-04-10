@@ -3,7 +3,7 @@
   "solution": {
     "name": "provision-assets-web-part-client-side-solution",
     "id": "ea04d096-711c-451b-bfeb-7ca7021b48ca",
-    "version": "1.0.0.0",
+    "version": "2.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -30,10 +30,11 @@
         "title": "Provision SharePoint Assets Feature",
         "description": "The feature that activates elements of the Provision SharePoint Assets solution.",
         "id": "c025675a-cf4c-4998-b76f-9904498788be",
-        "version": "1.0.0.0",
+        "version": "2.0.0.0",
         "assets": {
-          "elementManifests": ["elements.xml"],
-          "elementFiles": ["schema.xml"]
+          "elementManifests": ["elements.xml", "elements-v2.xml"],
+          "elementFiles": ["schema.xml"],
+          "upgradeActions": ["upgrade-action-v2.xml"]
         }
       }
     ]
