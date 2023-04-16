@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://beesly.sharepoint.com/SitePages/ApplicationCustomizer.aspx",
+      "customActions": {
+        "152a354a-7ab6-4287-91a8-b40eb315f6e9": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    },
+    "applicationCustomizerExtension": {
+      "pageUrl": "https://beesly.sharepoint.com/SitePages/ApplicationCustomizer.aspx",
+      "customActions": {
+        "152a354a-7ab6-4287-91a8-b40eb315f6e9": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    }
+  }
+}
