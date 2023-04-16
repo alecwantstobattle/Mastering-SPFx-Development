@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://beesly.sharepoint.com/Lists/ProjectStatus/AllItems.aspx",
+      "fieldCustomizers": {
+        "Status": {
+          "id": "ecc2f1bc-b253-4224-bbc1-6be2082ac936",
+          "properties": {
+            "sampleText": "Completed"
+          }
+        }
+      }
+    },
+    "fieldCustomizerExtension": {
+      "pageUrl": "https://beesly.sharepoint.com/Lists/ProjectStatus/AllItems.aspx",
+      "fieldCustomizers": {
+        "Status": {
+          "id": "ecc2f1bc-b253-4224-bbc1-6be2082ac936",
+          "properties": {
+            "sampleText": "Completed"
+          }
+        }
+      }
+    }
+  }
+}
