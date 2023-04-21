@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "react-show-list-items-web-part-client-side-solution",
+    "id": "5e803e63-b0dd-4873-b226-83eaf440a436",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "react-show-list-items-web-part description"
+      },
+      "longDescription": {
+        "default": "react-show-list-items-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "react-show-list-items-web-part Feature",
+        "description": "The feature that activates elements of the react-show-list-items-web-part solution.",
+        "id": "e6fc33b1-09b0-4447-82be-3f621e3ae972",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/react-show-list-items-web-part.sppkg"
+  }
+}

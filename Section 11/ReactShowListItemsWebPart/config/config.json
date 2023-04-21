@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "react-show-list-items-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/reactShowListItemsWebPart/ReactShowListItemsWebPartWebPart.js",
+          "manifest": "./src/webparts/reactShowListItemsWebPart/ReactShowListItemsWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ReactShowListItemsWebPartWebPartStrings": "lib/webparts/reactShowListItemsWebPart/loc/{locale}.js"
+  }
+}
