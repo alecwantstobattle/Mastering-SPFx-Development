@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://beesly.sharepoint.com/Lists/ProjectStatus/AllItems.aspx",
+      "customActions": {
+        "9c43cdd7-f267-4ed3-8509-82a408648f1e": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {
+            "sampleTextOne": "One item is selected in the list",
+            "sampleTextTwo": "Multiple items are selected"
+          }
+        }
+      }
+    },
+    "listCommandExtension": {
+      "pageUrl": "https://beesly.sharepoint.com/Lists/ProjectStatus/AllItems.aspx",
+      "customActions": {
+        "9c43cdd7-f267-4ed3-8509-82a408648f1e": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {
+            "sampleTextOne": "One item is selected in the list",
+            "sampleTextTwo": "Multiple items are selected"
+          }
+        }
+      }
+    }
+  }
+}
