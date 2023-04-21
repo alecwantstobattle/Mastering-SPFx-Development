@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "react-life-cycle-web-part-client-side-solution",
+    "id": "9784b1f1-1d2b-4c07-8912-6243a6f7321e",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "react-life-cycle-web-part description"
+      },
+      "longDescription": {
+        "default": "react-life-cycle-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "react-life-cycle-web-part Feature",
+        "description": "The feature that activates elements of the react-life-cycle-web-part solution.",
+        "id": "5d4b702c-d078-4bce-9044-c65bac8164fb",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/react-life-cycle-web-part.sppkg"
+  }
+}

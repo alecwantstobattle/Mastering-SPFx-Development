@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "react-life-cycle-web-part",
+    "libraryId": "9784b1f1-1d2b-4c07-8912-6243a6f7321e",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "react-life-cycle-web-part",
+    "solutionShortDescription": "react-life-cycle-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
