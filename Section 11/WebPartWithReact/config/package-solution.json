@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "web-part-with-react-client-side-solution",
+    "id": "3d72c8d2-0d99-4310-9981-2968f72a7b90",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "web-part-with-react description"
+      },
+      "longDescription": {
+        "default": "web-part-with-react description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "web-part-with-react Feature",
+        "description": "The feature that activates elements of the web-part-with-react solution.",
+        "id": "63f0f1be-e6e2-4c72-89f3-a9ffbcc4a26e",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/web-part-with-react.sppkg"
+  }
+}
