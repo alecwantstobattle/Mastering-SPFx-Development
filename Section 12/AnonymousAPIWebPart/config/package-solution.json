@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "anonymous-api-web-part-client-side-solution",
+    "id": "bea6999a-e4d2-4926-8e81-5ab4a993f717",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "anonymous-api-web-part description"
+      },
+      "longDescription": {
+        "default": "anonymous-api-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "anonymous-api-web-part Feature",
+        "description": "The feature that activates elements of the anonymous-api-web-part solution.",
+        "id": "1914f473-2a56-481e-8005-690da7314567",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/anonymous-api-web-part.sppkg"
+  }
+}

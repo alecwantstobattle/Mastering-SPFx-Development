@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "anonymous-api-web-part",
+    "libraryId": "bea6999a-e4d2-4926-8e81-5ab4a993f717",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "anonymous-api-web-part",
+    "solutionShortDescription": "anonymous-api-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
