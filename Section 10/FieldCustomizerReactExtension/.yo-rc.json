@@ -1,0 +1,17 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "field-customizer-react-extension",
+    "libraryId": "225cca87-ab45-4804-be8f-9e769d9e0196",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "field-customizer-react-extension",
+    "solutionShortDescription": "field-customizer-react-extension description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "extension",
+    "extensionType": "FieldCustomizer"
+  }
+}
