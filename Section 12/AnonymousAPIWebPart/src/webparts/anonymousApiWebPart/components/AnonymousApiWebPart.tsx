@@ -41,6 +41,41 @@ export default class AnonymousApiWebPart extends React.Component<
       }) as Promise<any>;
   }
 
+  public InvokeAPIAndSetDataIntoState() {
+    this.getUserDetails().then((response) => {
+      this.setState({
+        id: response.id,
+        name: response.name,
+        username: response.username,
+        email: response.email,
+        address:
+          'Street: ' +
+          response.address.street +
+          ' Suite: ' +
+          response.address.suite +
+          ' City' +
+          response.address.city +
+          ' Zip Code:' +
+          response.address.zipcode,
+        phone: response.phone,
+        website: response.website,
+        company: response.company.name,
+      });
+    });
+  }
+
+  public componentDidMount() {
+    this.InvokeAPIAndSetDataIntoState();
+  }
+
+  public componentDidUpdate(
+    prevProps: IAnonymousApiWebPartProps,
+    prevState: AnonymousApiWebPartState,
+    prevContext: any
+  ): void {
+    this.InvokeAPIAndSetDataIntoState();
+  }
+
   public render(): React.ReactElement<IAnonymousApiWebPartProps> {
     const {
       description,
