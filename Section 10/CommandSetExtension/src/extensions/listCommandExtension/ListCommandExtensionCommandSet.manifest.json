@@ -25,6 +25,11 @@
       "title": { "default": "Command Two" },
       "iconImageUrl": "icons/cancel.png",
       "type": "command"
+    },
+    "COMMAND_3": {
+      "title": { "default": "Update Remarks" },
+      "iconImageUrl": "icons/cancel.png",
+      "type": "command"
     }
   }
 }
