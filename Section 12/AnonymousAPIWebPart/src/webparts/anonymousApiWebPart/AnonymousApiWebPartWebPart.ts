@@ -12,10 +12,10 @@ import * as strings from 'AnonymousApiWebPartWebPartStrings';
 import AnonymousApiWebPart from './components/AnonymousApiWebPart';
 import { IAnonymousApiWebPartProps } from './components/IAnonymousApiWebPartProps';
 
-import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
-
 export interface IAnonymousApiWebPartWebPartProps {
   description: string;
+  apiUrl: string;
+  userId: string;
 }
 
 export default class AnonymousApiWebPartWebPart extends BaseClientSideWebPart<IAnonymousApiWebPartWebPartProps> {
@@ -29,34 +29,19 @@ export default class AnonymousApiWebPartWebPart extends BaseClientSideWebPart<IA
   }
 
   public render(): void {
-    this.getUserDetails().then((response) => {
-      const element: React.ReactElement<IAnonymousApiWebPartProps> =
-        React.createElement(AnonymousApiWebPart, {
-          description: this.properties.description,
-          isDarkTheme: this._isDarkTheme,
-          environmentMessage: this._environmentMessage,
-          hasTeamsContext: !!this.context.sdks.microsoftTeams,
-          userDisplayName: this.context.pageContext.user.displayName,
-          id: response.id,
-          name: response.name,
-          username: response.username,
-          email: response.email,
-          address:
-            'Street: ' +
-            response.address.street +
-            ' Suite: ' +
-            response.address.suite +
-            ' City' +
-            response.address.city +
-            ' Zip Code:' +
-            response.address.zipcode,
-          phone: response.phone,
-          website: response.website,
-          company: response.company.name,
-        });
+    const element: React.ReactElement<IAnonymousApiWebPartProps> =
+      React.createElement(AnonymousApiWebPart, {
+        description: this.properties.description,
+        isDarkTheme: this._isDarkTheme,
+        environmentMessage: this._environmentMessage,
+        hasTeamsContext: !!this.context.sdks.microsoftTeams,
+        userDisplayName: this.context.pageContext.user.displayName,
+        context: this.context,
+        apiUrl: this.properties.apiUrl,
+        userId: this.properties.userId,
+      });
 
-      ReactDom.render(element, this.domElement);
-    });
+    ReactDom.render(element, this.domElement);
   }
 
   private _getEnvironmentMessage(): string {
@@ -87,20 +72,6 @@ export default class AnonymousApiWebPartWebPart extends BaseClientSideWebPart<IA
     );
   }
 
-  private getUserDetails(): Promise<any> {
-    return this.context.httpClient
-      .get(
-        'https://jsonplaceholder.typicode.com/users/1',
-        HttpClient.configurations.v1
-      )
-      .then((response: HttpClientResponse) => {
-        return response.json();
-      })
-      .then((jsonResponse) => {
-        return jsonResponse;
-      }) as Promise<any>;
-  }
-
   protected onDispose(): void {
     ReactDom.unmountComponentAtNode(this.domElement);
   }
@@ -122,6 +93,12 @@ export default class AnonymousApiWebPartWebPart extends BaseClientSideWebPart<IA
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel,
+                }),
+                PropertyPaneTextField('apiUrl', {
+                  label: 'News API URL',
+                }),
+                PropertyPaneTextField('userId', {
+                  label: 'User ID',
                 }),
               ],
             },
