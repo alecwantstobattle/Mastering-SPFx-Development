@@ -8,6 +8,13 @@
   &.teams {
     font-family: $ms-font-family-fallbacks;
   }
+
+  .row {
+    @include ms-Grid-row;
+    @include ms-fontColor-blue;
+    background-color: aqua;    
+    padding: 20px;
+  }
 }
 
 .welcome {

@@ -68,7 +68,40 @@ export default class ReactShowListItemsWebPart extends React.Component<
         className={`${styles.reactShowListItemsWebPart} ${
           hasTeamsContext ? styles.teams : ''
         }`}>
-        <div className={styles.rShowListItems}></div>
+        <div className={styles.rShowListItems}>
+          <table className={styles.row}>
+            {this.state.listItems.map(function (listitem, listitemkey) {
+              let fullurl: string = `${ReactShowListItemsWebPart.siteUrl}/lists/MicrosoftSoftware/DispForm.aspx?ID=${listitem.ID}`;
+              return (
+                <tr>
+                  <td>
+                    <a className={styles.label} href={fullurl}>
+                      {listitem.Title}
+                    </a>
+                  </td>
+
+                  <td className={styles.label}>{listitem.ID}</td>
+                  <td className={styles.label}>{listitem.SoftwareName}</td>
+                </tr>
+              );
+            })}
+          </table>
+
+          <ol>
+            {this.state.listItems.map(function (listitem, listitemkey) {
+              let fullurl: string = `${ReactShowListItemsWebPart.siteUrl}/lists/MicrosoftSoftware/DispForm.aspx?ID=${listitem.ID}`;
+
+              return (
+                <li>
+                  <a className={styles.label} href={fullurl}>
+                    <span>{listitem.Title}</span>,<span>{listitem.ID}</span>,
+                    <span>{listitem.SoftwareName}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </section>
     );
   }
