@@ -10,7 +10,6 @@ import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
 
 import {
   TextField,
-  autobind,
   PrimaryButton,
   DetailsList,
   DetailsListLayoutMode,
@@ -19,6 +18,59 @@ import {
 } from 'office-ui-fabric-react';
 
 import * as strings from 'ShowAllUsersOfficeFabricWebPartWebPartStrings';
+import { IUser } from './IUser';
+
+// Configure the columns for the DetailsList component
+let _usersListColumns = [
+  {
+    key: 'displayName',
+    name: 'Display name',
+    fieldName: 'displayName',
+    minWidth: 50,
+    maxWidth: 150,
+    isResizable: true,
+  },
+  {
+    key: 'givenName',
+    name: 'Given Name',
+    fieldName: 'givenName',
+    minWidth: 50,
+    maxWidth: 100,
+    isResizable: true,
+  },
+  {
+    key: 'surName',
+    name: 'SurName',
+    fieldName: 'surname',
+    minWidth: 50,
+    maxWidth: 100,
+    isResizable: true,
+  },
+  {
+    key: 'mail',
+    name: 'Mail',
+    fieldName: 'mail',
+    minWidth: 150,
+    maxWidth: 150,
+    isResizable: true,
+  },
+  {
+    key: 'mobilePhone',
+    name: 'mobile Phone',
+    fieldName: 'mobilePhone',
+    minWidth: 50,
+    maxWidth: 100,
+    isResizable: true,
+  },
+  {
+    key: 'userPrincipalName',
+    name: 'User Principal Name',
+    fieldName: 'userPrincipalName',
+    minWidth: 200,
+    maxWidth: 200,
+    isResizable: true,
+  },
+];
 
 export default class ShowAllUsersOfficeFabricWebPart extends React.Component<
   IShowAllUsersOfficeFabricWebPartProps,
@@ -36,6 +88,61 @@ export default class ShowAllUsersOfficeFabricWebPart extends React.Component<
     };
   }
 
+  public componentDidMount(): void {
+    this.fetchUserDetails();
+  }
+
+  public _search(): void {
+    this.fetchUserDetails();
+  }
+
+  private _onSearchForChanged(e: any, newValue: string): void {
+    this.setState({
+      searchFor: newValue,
+    });
+  }
+
+  private _getSearchForErrorMessage(value: string): string {
+    return value == null || value.length == 0 || value.indexOf(' ') < 0
+      ? ''
+      : `${strings.SearchForValidationErrorMessage}`;
+  }
+
+  public fetchUserDetails(): void {
+    this.props.context.msGraphClientFactory
+      .getClient()
+      .then((client: MSGraphClient): void => {
+        client
+          .api('users')
+          .version('v1.0')
+          .select('*')
+          .filter(`startswith(givenname,'${escape(this.state.searchFor)}')`)
+          .get((error: any, response, rawResponse?: any) => {
+            if (error) {
+              console.error('Message is : ' + error);
+              return;
+            }
+
+            // Prepare the output array
+            var allUsers: Array<IUser> = new Array<IUser>();
+
+            // Map the JSON response to the output array
+            response.value.map((item: IUser) => {
+              allUsers.push({
+                displayName: item.displayName,
+                givenName: item.givenName,
+                surname: item.surname,
+                mail: item.mail,
+                mobilePhone: item.mobilePhone,
+                userPrincipalName: item.userPrincipalName,
+              });
+            });
+
+            this.setState({ users: allUsers });
+          });
+      });
+  }
+
   public render(): React.ReactElement<IShowAllUsersOfficeFabricWebPartProps> {
     const {
       description,
@@ -46,74 +153,35 @@ export default class ShowAllUsersOfficeFabricWebPart extends React.Component<
     } = this.props;
 
     return (
-      <section
-        className={`${styles.showAllUsersOfficeFabricWebPart} ${
-          hasTeamsContext ? styles.teams : ''
-        }`}>
-        <div className={styles.welcome}>
-          <img
-            alt=""
-            src={
-              isDarkTheme
-                ? require('../assets/welcome-dark.png')
-                : require('../assets/welcome-light.png')
-            }
-            className={styles.welcomeImage}
+      <div className={styles.showAllUsersOfficeFabricWebPart}>
+        <TextField
+          label={strings.SearchFor}
+          required={true}
+          value={this.state.searchFor}
+          onChange={(e, v) => this._onSearchForChanged(e, v)}
+          onGetErrorMessage={this._getSearchForErrorMessage}
+        />
+        <p>
+          <PrimaryButton
+            text="Search"
+            title="Search"
+            onClick={() => this._search()}
           />
-          <h2>Well done, {escape(userDisplayName)}!</h2>
-          <div>{environmentMessage}</div>
-          <div>
-            Web part property value: <strong>{escape(description)}</strong>
-          </div>
-        </div>
-        <div>
-          <h3>Welcome to SharePoint Framework!</h3>
+        </p>
+        {this.state.users != null && this.state.users.length > 0 ? (
           <p>
-            The SharePoint Framework (SPFx) is a extensibility model for
-            Microsoft Viva, Microsoft Teams and SharePoint. It's the easiest way
-            to extend Microsoft 365 with automatic Single Sign On, automatic
-            hosting and industry standard tooling.
+            <DetailsList
+              items={this.state.users}
+              columns={_usersListColumns}
+              setKey="set"
+              checkboxVisibility={CheckboxVisibility.onHover}
+              selectionMode={SelectionMode.single}
+              layoutMode={DetailsListLayoutMode.fixedColumns}
+              compact={true}
+            />
           </p>
-          <h4>Learn more about SPFx development:</h4>
-          <ul className={styles.links}>
-            <li>
-              <a href="https://aka.ms/spfx" target="_blank">
-                SharePoint Framework Overview
-              </a>
-            </li>
-            <li>
-              <a href="https://aka.ms/spfx-yeoman-graph" target="_blank">
-                Use Microsoft Graph in your solution
-              </a>
-            </li>
-            <li>
-              <a href="https://aka.ms/spfx-yeoman-teams" target="_blank">
-                Build for Microsoft Teams using SharePoint Framework
-              </a>
-            </li>
-            <li>
-              <a href="https://aka.ms/spfx-yeoman-viva" target="_blank">
-                Build for Microsoft Viva Connections using SharePoint Framework
-              </a>
-            </li>
-            <li>
-              <a href="https://aka.ms/spfx-yeoman-store" target="_blank">
-                Publish SharePoint Framework applications to the marketplace
-              </a>
-            </li>
-            <li>
-              <a href="https://aka.ms/spfx-yeoman-api" target="_blank">
-                SharePoint Framework API reference
-              </a>
-            </li>
-            <li>
-              <a href="https://aka.ms/m365pnp" target="_blank">
-                Microsoft 365 Developer Community
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        ) : null}
+      </div>
     );
   }
 }
