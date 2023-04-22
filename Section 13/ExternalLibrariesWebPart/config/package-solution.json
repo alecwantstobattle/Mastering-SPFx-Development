@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "external-libraries-web-part-client-side-solution",
+    "id": "bcab4a01-11c6-451a-a297-fbf9f92d5c20",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "external-libraries-web-part description"
+      },
+      "longDescription": {
+        "default": "external-libraries-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "external-libraries-web-part Feature",
+        "description": "The feature that activates elements of the external-libraries-web-part solution.",
+        "id": "ec7f9338-4094-4af2-88fb-b161caf3729b",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/external-libraries-web-part.sppkg"
+  }
+}
