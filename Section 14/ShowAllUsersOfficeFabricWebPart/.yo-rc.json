@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "show-all-users-office-fabric-web-part",
+    "libraryId": "641f4b06-bdb6-49b9-981a-67b27309dd85",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "show-all-users-office-fabric-web-part",
+    "solutionShortDescription": "show-all-users-office-fabric-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

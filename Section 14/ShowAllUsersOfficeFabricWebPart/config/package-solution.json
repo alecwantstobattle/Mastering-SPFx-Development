@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "show-all-users-office-fabric-web-part-client-side-solution",
+    "id": "641f4b06-bdb6-49b9-981a-67b27309dd85",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "show-all-users-office-fabric-web-part description"
+      },
+      "longDescription": {
+        "default": "show-all-users-office-fabric-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "show-all-users-office-fabric-web-part Feature",
+        "description": "The feature that activates elements of the show-all-users-office-fabric-web-part solution.",
+        "id": "2794077b-1959-4358-adca-f4726535a48d",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/show-all-users-office-fabric-web-part.sppkg"
+  }
+}
