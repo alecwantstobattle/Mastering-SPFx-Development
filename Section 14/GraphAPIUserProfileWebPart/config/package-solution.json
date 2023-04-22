@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "graph-api-user-profile-web-part-client-side-solution",
+    "id": "6cd49bbf-baab-46bd-b09c-eb410a7c76e3",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "graph-api-user-profile-web-part description"
+      },
+      "longDescription": {
+        "default": "graph-api-user-profile-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "graph-api-user-profile-web-part Feature",
+        "description": "The feature that activates elements of the graph-api-user-profile-web-part solution.",
+        "id": "966f9755-b643-4b55-8d01-5a257e7e62a3",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/graph-api-user-profile-web-part.sppkg"
+  }
+}

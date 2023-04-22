@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "graph-api-user-profile-web-part",
+    "libraryId": "6cd49bbf-baab-46bd-b09c-eb410a7c76e3",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "graph-api-user-profile-web-part",
+    "solutionShortDescription": "graph-api-user-profile-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

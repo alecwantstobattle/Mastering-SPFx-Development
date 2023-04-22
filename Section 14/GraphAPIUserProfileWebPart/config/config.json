@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "graph-api-user-profile-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/graphApiUserProfileWebPart/GraphApiUserProfileWebPartWebPart.js",
+          "manifest": "./src/webparts/graphApiUserProfileWebPart/GraphApiUserProfileWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "GraphApiUserProfileWebPartWebPartStrings": "lib/webparts/graphApiUserProfileWebPart/loc/{locale}.js"
+  }
+}
