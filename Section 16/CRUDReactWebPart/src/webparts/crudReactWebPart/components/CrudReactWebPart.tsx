@@ -78,10 +78,28 @@ let _softwareListColumns = [
   },
 ];
 
+const textFieldStyles: Partial<ITextFieldStyles> = {
+  fieldGroup: { width: 300 },
+};
+const narrowTextFieldStyles: Partial<ITextFieldStyles> = {
+  fieldGroup: { width: 100 },
+};
+const narrowDropdownStyles: Partial<IDropdownStyles> = {
+  dropdown: { width: 300 },
+};
+
 export default class CrudReactWebPart extends React.Component<
   ICrudReactWebPartProps,
   ICrudReactWebPartState
 > {
+  private _selection: Selection;
+
+  private _onItemsSelectionChanged = () => {
+    this.setState({
+      SoftwareListItem: this._selection.getSelection()[0] as ISoftwareListItem,
+    });
+  };
+
   constructor(props: ICrudReactWebPartProps, state: ICrudReactWebPartState) {
     super(props);
 
@@ -103,11 +121,35 @@ export default class CrudReactWebPart extends React.Component<
     });
   }
 
+  private _getListItems(): Promise<ISoftwareListItem[]> {
+    const url: string =
+      this.props.siteUrl +
+      "/_api/web/Lists/getByTitle('MicrosoftSoftware')/items";
+    return this.props.context.spHttpClient
+      .get(url, SPHttpClient.configurations.v1)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        return json.value;
+      }) as Promise<ISoftwareListItem[]>;
+  }
+
+  public bindDetailsList(message: string): void {
+    this._getListItems().then((listItems) => {
+      this.setState({ SoftwareListItems: listItems, status: message });
+    });
+  }
+
+  public componentDidMount(): void {
+    this.bindDetailsList('All Records have been loaded Successfully');
+  }
+
   public render(): React.ReactElement<ICrudReactWebPartProps> {
     const dropdownRef = React.createRef<IDropdown>();
 
     return (
-      <div className={styles.crudWithReact}>
+      <div className={styles.crudReactWebPart}>
         <TextField
           label="ID"
           required={false}
@@ -171,13 +213,13 @@ export default class CrudReactWebPart extends React.Component<
           }}
         />
 
-        <p className={styles.title}>
+        {/* <p className={styles.title}>
           <PrimaryButton text="Add" title="Add" onClick={this.btnAdd_click} />
 
           <PrimaryButton text="Update" onClick={this.btnUpdate_click} />
 
           <PrimaryButton text="Delete" onClick={this.btnDelete_click} />
-        </p>
+        </p> */}
 
         <div id="divStatus">{this.state.status}</div>
 
