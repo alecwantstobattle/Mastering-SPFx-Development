@@ -172,6 +172,43 @@ export default class CrudReactWebPart extends React.Component<
       });
   }
 
+  public btnUpdate_click(): void {
+    let id: number = this.state.SoftwareListItem.Id;
+
+    const url: string =
+      this.props.siteUrl +
+      "/_api/web/lists/getbytitle('MicrosoftSoftware')/items(" +
+      id +
+      ')';
+
+    const headers: any = {
+      'X-HTTP-Method': 'MERGE',
+      'IF-MATCH': '*',
+    };
+
+    const spHttpClientOptions: ISPHttpClientOptions = {
+      headers: headers,
+      body: JSON.stringify(this.state.SoftwareListItem),
+    };
+
+    this.props.context.spHttpClient
+      .post(url, SPHttpClient.configurations.v1, spHttpClientOptions)
+      .then((response: SPHttpClientResponse) => {
+        if (response.status === 204) {
+          this.bindDetailsList(
+            'Record Updated and All Records were loaded Successfully'
+          );
+        } else {
+          let errormessage: string =
+            'An error has occured i.e.  ' +
+            response.status +
+            ' - ' +
+            response.statusText;
+          this.setState({ status: errormessage });
+        }
+      });
+  }
+
   private _onSoftwareListItemChanged = (key: string, value: string) => {
     this.setState((prev, props) => {
       return {
@@ -254,9 +291,9 @@ export default class CrudReactWebPart extends React.Component<
             title="Add"
             onClick={() => this.btnAdd_click()}
           />
-          {/*
-          <PrimaryButton text="Update" onClick={this.btnUpdate_click} />
 
+          <PrimaryButton text="Update" onClick={() => this.btnUpdate_click()} />
+          {/*
           <PrimaryButton text="Delete" onClick={this.btnDelete_click} />
           */}
         </p>
