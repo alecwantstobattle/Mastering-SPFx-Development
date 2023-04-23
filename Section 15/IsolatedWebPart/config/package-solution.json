@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "isolated-web-part-client-side-solution",
+    "id": "92fb6ecd-0c88-4f58-9b5f-8174216ac99a",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": true,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "isolated-web-part description"
+      },
+      "longDescription": {
+        "default": "isolated-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "isolated-web-part Feature",
+        "description": "The feature that activates elements of the isolated-web-part solution.",
+        "id": "d344598d-69bd-4c77-843d-15b239c08a70",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/isolated-web-part.sppkg"
+  }
+}
