@@ -145,6 +145,45 @@ export default class CrudReactWebPart extends React.Component<
     this.bindDetailsList('All Records have been loaded Successfully');
   }
 
+  public btnAdd_click(): void {
+    const url: string =
+      this.props.siteUrl +
+      "/_api/web/lists/getbytitle('MicrosoftSoftware')/items";
+
+    const spHttpClientOptions: ISPHttpClientOptions = {
+      body: JSON.stringify(this.state.SoftwareListItem),
+    };
+
+    this.props.context.spHttpClient
+      .post(url, SPHttpClient.configurations.v1, spHttpClientOptions)
+      .then((response: SPHttpClientResponse) => {
+        if (response.status === 201) {
+          this.bindDetailsList(
+            'Record added and All Records were loaded Successfully'
+          );
+        } else {
+          let errormessage: string =
+            'An error has occured i.e.  ' +
+            response.status +
+            ' - ' +
+            response.statusText;
+          this.setState({ status: errormessage });
+        }
+      });
+  }
+
+  private _onSoftwareListItemChanged = (key: string, value: string) => {
+    this.setState((prev, props) => {
+      return {
+        ...prev,
+        SoftwareListItem: {
+          ...prev.SoftwareListItem,
+          [key]: value,
+        },
+      };
+    });
+  };
+
   public render(): React.ReactElement<ICrudReactWebPartProps> {
     const dropdownRef = React.createRef<IDropdown>();
 
@@ -155,36 +194,32 @@ export default class CrudReactWebPart extends React.Component<
           required={false}
           value={this.state.SoftwareListItem.Id.toString()}
           styles={textFieldStyles}
-          onChange={(e, v) => {
-            this.state.SoftwareListItem.Id = +v;
-          }}
+          onChange={(e, v) => this._onSoftwareListItemChanged('Id', v)}
         />
         <TextField
           label="Software Title"
           required={true}
           value={this.state.SoftwareListItem.Title}
           styles={textFieldStyles}
-          onChange={(e, v) => {
-            this.state.SoftwareListItem.Title = v;
-          }}
+          onChange={(e, v) => this._onSoftwareListItemChanged('Title', v)}
         />
         <TextField
           label="Software Name"
           required={true}
           value={this.state.SoftwareListItem.SoftwareName}
           styles={textFieldStyles}
-          onChange={(e, v) => {
-            this.state.SoftwareListItem.SoftwareName = v;
-          }}
+          onChange={(e, v) =>
+            this._onSoftwareListItemChanged('SoftwareName', v)
+          }
         />
         <TextField
           label="Software Description"
           required={true}
           value={this.state.SoftwareListItem.SoftwareDescription}
           styles={textFieldStyles}
-          onChange={(e, v) => {
-            this.state.SoftwareListItem.SoftwareDescription = v;
-          }}
+          onChange={(e, v) =>
+            this._onSoftwareListItemChanged('SoftwareDescription', v)
+          }
         />
         <TextField
           label="Software Version"
@@ -192,7 +227,7 @@ export default class CrudReactWebPart extends React.Component<
           value={this.state.SoftwareListItem.SoftwareVersion}
           styles={textFieldStyles}
           onChange={(e, v) => {
-            this.state.SoftwareListItem.SoftwareVersion = v;
+            this._onSoftwareListItemChanged('SoftwareVersion', v);
           }}
         />
         <Dropdown
@@ -208,18 +243,23 @@ export default class CrudReactWebPart extends React.Component<
           defaultSelectedKey={this.state.SoftwareListItem.SoftwareVendor}
           required
           styles={narrowDropdownStyles}
-          onChange={(e, v) => {
-            this.state.SoftwareListItem.SoftwareVendor = v.text;
-          }}
+          onChange={(e, v) =>
+            this._onSoftwareListItemChanged('SoftwareVendor', v.text)
+          }
         />
 
-        {/* <p className={styles.title}>
-          <PrimaryButton text="Add" title="Add" onClick={this.btnAdd_click} />
-
+        <p>
+          <PrimaryButton
+            text="Add"
+            title="Add"
+            onClick={() => this.btnAdd_click()}
+          />
+          {/*
           <PrimaryButton text="Update" onClick={this.btnUpdate_click} />
 
           <PrimaryButton text="Delete" onClick={this.btnDelete_click} />
-        </p> */}
+          */}
+        </p>
 
         <div id="divStatus">{this.state.status}</div>
 
