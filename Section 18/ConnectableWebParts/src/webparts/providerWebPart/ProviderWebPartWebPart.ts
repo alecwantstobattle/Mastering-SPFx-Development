@@ -56,6 +56,7 @@ export default class ProviderWebPartWebPart
 
     throw new Error('Invalid property ID');
   }
+
   private handleDepartmentChangeSelected = (department: IDepartment): void => {
     this._selectedDepartment = department;
     this.context.dynamicDataSourceManager.notifyPropertyChanged('id');

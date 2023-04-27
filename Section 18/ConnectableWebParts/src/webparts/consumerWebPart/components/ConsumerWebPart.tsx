@@ -3,41 +3,129 @@ import styles from './ConsumerWebPart.module.scss';
 import { IConsumerWebPartProps } from './IConsumerWebPartProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 
-export default class ConsumerWebPart extends React.Component<IConsumerWebPartProps, {}> {
-  public render(): React.ReactElement<IConsumerWebPartProps> {
-    const {
-      description,
-      isDarkTheme,
-      environmentMessage,
-      hasTeamsContext,
-      userDisplayName
-    } = this.props;
+import { IEmployee } from './IEmployee';
+import { IConsumerWebPartState } from './IEmployeeState';
 
+import {
+  DetailsList,
+  DetailsListLayoutMode,
+  CheckboxVisibility,
+  SelectionMode,
+  DetailsRowCheck,
+  Selection,
+} from 'office-ui-fabric-react';
+
+import {
+  ISPHttpClientOptions,
+  SPHttpClient,
+  SPHttpClientResponse,
+} from '@microsoft/sp-http';
+
+import { IWebPartPropertiesMetadata } from '@microsoft/sp-webpart-base';
+
+let _employeeListColumns = [
+  {
+    key: 'ID',
+    name: 'ID',
+    fieldName: 'ID',
+    minWidth: 50,
+    maxWidth: 100,
+    isResizable: true,
+  },
+  {
+    key: 'Title',
+    name: 'Title',
+    fieldName: 'Title',
+    minWidth: 50,
+    maxWidth: 100,
+    isResizable: true,
+  },
+  {
+    key: 'DeptTitle',
+    name: 'DeptTitle',
+    fieldName: 'DeptTitleId',
+    minWidth: 50,
+    maxWidth: 100,
+    isResizable: true,
+  },
+  {
+    key: 'Designation',
+    name: 'Designation',
+    fieldName: 'Designation',
+    minWidth: 50,
+    maxWidth: 100,
+    isResizable: true,
+  },
+];
+
+export default class ConsumerWebPart extends React.Component<
+  IConsumerWebPartProps,
+  IConsumerWebPartState
+> {
+  constructor(props: IConsumerWebPartProps, state: IConsumerWebPartState) {
+    super(props);
+
+    this.state = {
+      status: 'Ready',
+      EmployeeListItems: [],
+      EmployeeListItem: {
+        Id: 0,
+        Title: '',
+        DeptTitle: '',
+        Designation: '',
+      },
+      DeptTitleId: '',
+    };
+  }
+
+  private _getListItems(): Promise<IEmployee[]> {
+    const url: string =
+      this.props.siteUrl +
+      "/_api/web/lists/getbytitle('Employee')/items?$filter=DeptTitleId eq " +
+      this.props.DeptTitleId.tryGetValue();
+    return this.props.context.spHttpClient
+      .get(url, SPHttpClient.configurations.v1)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        return json.value;
+      }) as Promise<IEmployee[]>;
+  }
+
+  public bindDetailsList(message: string): void {
+    this._getListItems().then((listItems) => {
+      console.log(listItems);
+      this.setState({
+        EmployeeListItems: listItems,
+        status: message,
+        DeptTitleId: this.props.DeptTitleId.tryGetValue().toString(),
+      });
+    });
+  }
+
+  public componentDidMount(): void {
+    // this.bindDetailsList("All Records have been loaded Successfully");
+  }
+
+  public render(): React.ReactElement<IConsumerWebPartProps> {
     return (
-      <section className={`${styles.consumerWebPart} ${hasTeamsContext ? styles.teams : ''}`}>
-        <div className={styles.welcome}>
-          <img alt="" src={isDarkTheme ? require('../assets/welcome-dark.png') : require('../assets/welcome-light.png')} className={styles.welcomeImage} />
-          <h2>Well done, {escape(userDisplayName)}!</h2>
-          <div>{environmentMessage}</div>
-          <div>Web part property value: <strong>{escape(description)}</strong></div>
-        </div>
+      <div className={styles.consumerWebPart}>
         <div>
-          <h3>Welcome to SharePoint Framework!</h3>
-          <p>
-            The SharePoint Framework (SPFx) is a extensibility model for Microsoft Viva, Microsoft Teams and SharePoint. It's the easiest way to extend Microsoft 365 with automatic Single Sign On, automatic hosting and industry standard tooling.
-          </p>
-          <h4>Learn more about SPFx development:</h4>
-          <ul className={styles.links}>
-            <li><a href="https://aka.ms/spfx" target="_blank">SharePoint Framework Overview</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-graph" target="_blank">Use Microsoft Graph in your solution</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-teams" target="_blank">Build for Microsoft Teams using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-viva" target="_blank">Build for Microsoft Viva Connections using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-store" target="_blank">Publish SharePoint Framework applications to the marketplace</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-api" target="_blank">SharePoint Framework API reference</a></li>
-            <li><a href="https://aka.ms/m365pnp" target="_blank">Microsoft 365 Developer Community</a></li>
-          </ul>
+          <h1>
+            Selected Department is : {this.props.DeptTitleId.tryGetValue()}
+          </h1>
         </div>
-      </section>
+        <DetailsList
+          items={this.state.EmployeeListItems}
+          columns={_employeeListColumns}
+          setKey="Id"
+          checkboxVisibility={CheckboxVisibility.always}
+          selectionMode={SelectionMode.single}
+          layoutMode={DetailsListLayoutMode.fixedColumns}
+          compact={true}
+        />
+      </div>
     );
   }
 }
