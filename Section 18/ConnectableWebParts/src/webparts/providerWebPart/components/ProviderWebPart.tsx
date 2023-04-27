@@ -74,7 +74,7 @@ export default class ProviderWebPart extends React.Component<
 
   private _getListItems(): Promise<IDepartment[]> {
     const url: string =
-      this.props.siteUrl + "/_api/web/lists/getbytitle('Departments')/items";
+      this.props.siteUrl + "/_api/web/lists/getbytitle('Department')/items";
     return this.props.context.spHttpClient
       .get(url, SPHttpClient.configurations.v1)
       .then((response) => {

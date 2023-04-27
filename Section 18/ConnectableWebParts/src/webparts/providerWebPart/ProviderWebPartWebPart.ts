@@ -12,19 +12,55 @@ import * as strings from 'ProviderWebPartWebPartStrings';
 import ProviderWebPart from './components/ProviderWebPart';
 import { IProviderWebPartProps } from './components/IProviderWebPartProps';
 
+import {
+  IDynamicDataPropertyDefinition,
+  IDynamicDataCallables,
+} from '@microsoft/sp-dynamic-data';
+import { IDepartment } from './components/IDepartment';
+
 export interface IProviderWebPartWebPartProps {
   description: string;
 }
 
-export default class ProviderWebPartWebPart extends BaseClientSideWebPart<IProviderWebPartWebPartProps> {
+export default class ProviderWebPartWebPart
+  extends BaseClientSideWebPart<IProviderWebPartWebPartProps>
+  implements IDynamicDataCallables
+{
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
+
+  private _selectedDepartment: IDepartment;
 
   protected onInit(): Promise<void> {
     this._environmentMessage = this._getEnvironmentMessage();
 
-    return super.onInit();
+    this.context.dynamicDataSourceManager.initializeSource(this);
+
+    return Promise.resolve();
   }
+
+  public getPropertyDefinitions(): ReadonlyArray<IDynamicDataPropertyDefinition> {
+    return [
+      {
+        id: 'id',
+        title: 'Selected Department ID',
+      },
+    ];
+  }
+
+  public getPropertyValue(propertyId: string): string | IDepartment {
+    switch (propertyId) {
+      case 'id':
+        return this._selectedDepartment.Id.toString();
+    }
+
+    throw new Error('Invalid property ID');
+  }
+  private handleDepartmentChangeSelected = (department: IDepartment): void => {
+    this._selectedDepartment = department;
+    this.context.dynamicDataSourceManager.notifyPropertyChanged('id');
+    console.log('End Of Handle Event : ' + department.Id + department.Title);
+  };
 
   public render(): void {
     const element: React.ReactElement<IProviderWebPartProps> =
@@ -34,6 +70,9 @@ export default class ProviderWebPartWebPart extends BaseClientSideWebPart<IProvi
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         userDisplayName: this.context.pageContext.user.displayName,
+        context: this.context,
+        siteUrl: this.context.pageContext.web.absoluteUrl,
+        onDepartmentSelected: this.handleDepartmentChangeSelected,
       });
 
     ReactDom.render(element, this.domElement);
