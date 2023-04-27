@@ -109,6 +109,10 @@ export default class ConsumerWebPart extends React.Component<
   }
 
   public render(): React.ReactElement<IConsumerWebPartProps> {
+    if (this.state.DeptTitleId != this.props.DeptTitleId.tryGetValue()) {
+      this.bindDetailsList('All Records have been loaded Successfully');
+    }
+
     return (
       <div className={styles.consumerWebPart}>
         <div>

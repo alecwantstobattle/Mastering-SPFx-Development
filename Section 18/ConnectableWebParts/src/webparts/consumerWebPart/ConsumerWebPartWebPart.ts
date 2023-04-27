@@ -14,6 +14,14 @@ import { IConsumerWebPartProps } from './components/IConsumerWebPartProps';
 
 import { DynamicProperty } from '@microsoft/sp-component-base';
 
+import {
+  DynamicDataSharedDepth,
+  PropertyPaneDynamicFieldSet,
+  PropertyPaneDynamicField,
+  IPropertyPaneConditionalGroup,
+  IWebPartPropertiesMetadata,
+} from '@microsoft/sp-webpart-base';
+
 export interface IConsumerWebPartWebPartProps {
   description: string;
   DeptTitleId: DynamicProperty<string>;
@@ -81,6 +89,12 @@ export default class ConsumerWebPartWebPart extends BaseClientSideWebPart<IConsu
     return Version.parse('1.0');
   }
 
+  protected get propertiesMetadata(): IWebPartPropertiesMetadata {
+    return {
+      DeptTitleId: { dynamicPropertyType: 'string' },
+    };
+  }
+
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
@@ -90,10 +104,21 @@ export default class ConsumerWebPartWebPart extends BaseClientSideWebPart<IConsu
           },
           groups: [
             {
-              groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel,
+                PropertyPaneDynamicFieldSet({
+                  label: 'Select Department ID',
+                  fields: [
+                    PropertyPaneDynamicField('DeptTitleId', {
+                      label: 'Department ID',
+                    }),
+                  ],
+                  sharedConfiguration: {
+                    depth: DynamicDataSharedDepth.Property,
+                    source: {
+                      sourcesLabel:
+                        'Select the web part containing the list of Departments',
+                    },
+                  },
                 }),
               ],
             },
