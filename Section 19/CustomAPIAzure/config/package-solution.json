@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "custom-api-azure-client-side-solution",
+    "id": "48157a82-cdf0-4e4e-b307-9ea9687e88e5",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "custom-api-azure description"
+      },
+      "longDescription": {
+        "default": "custom-api-azure description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "custom-api-azure Feature",
+        "description": "The feature that activates elements of the custom-api-azure solution.",
+        "id": "64ed830f-1f02-46bc-b892-515f3c0495ae",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/custom-api-azure.sppkg"
+  }
+}
