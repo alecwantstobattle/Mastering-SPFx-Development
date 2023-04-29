@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "consume-custom-api-azure-client-side-solution",
+    "id": "a1e6e4ea-8585-4a0a-a3ed-2c72fefaf685",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "consume-custom-api-azure description"
+      },
+      "longDescription": {
+        "default": "consume-custom-api-azure description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "consume-custom-api-azure Feature",
+        "description": "The feature that activates elements of the consume-custom-api-azure solution.",
+        "id": "ed307167-bc1c-45f1-9b47-e2ccb4eaf6c6",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/consume-custom-api-azure.sppkg"
+  }
+}
