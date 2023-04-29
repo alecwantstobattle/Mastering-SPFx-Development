@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "graph-api-events-web-part",
+    "libraryId": "1925c4ae-60d2-47a5-be03-3d89de8755a5",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "graph-api-events-web-part",
+    "solutionShortDescription": "graph-api-events-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
