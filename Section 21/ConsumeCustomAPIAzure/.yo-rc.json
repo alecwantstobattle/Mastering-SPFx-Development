@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "consume-custom-api-azure",
+    "libraryId": "a1e6e4ea-8585-4a0a-a3ed-2c72fefaf685",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "consume-custom-api-azure",
+    "solutionShortDescription": "consume-custom-api-azure description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
