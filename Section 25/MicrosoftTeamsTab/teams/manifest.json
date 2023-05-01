@@ -1,0 +1,64 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "packageName": "MicrosoftTeamsTabWebPart",
+  "version": "1.0.0",
+  "id": "45802ffe-d349-4642-8c5a-7124b6ba5603",
+  "developer": {
+    "name": "Publisher Name",
+    "websiteUrl": "https://example.com/",
+    "privacyUrl": "https://example.com/privacy",
+    "termsOfUseUrl": "https://example.com/app-tos",
+    "mpnId": "1234567890"
+  },
+  "name": {
+    "short": "MicrosoftTeamsTab short",
+    "full": "MicrosoftTeamsTab full"
+  },
+  "description": {
+    "short": "MicrosoftTeamsTab description short",
+    "full": "MicrosoftTeamsTab description full"
+  },
+  "icons": {
+    "outline": "45802ffe-d349-4642-8c5a-7124b6ba5603_outline.png",
+    "color": "45802ffe-d349-4642-8c5a-7124b6ba5603_color.png"
+  },
+  "accentColor": "#004578",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://{teamSiteDomain}{teamSitePath}/_layouts/15/TeamsLogon.aspx?SPFX=true&dest={teamSitePath}/_layouts/15/teamshostedapp.aspx%3FopenPropertyPane=true%26teams%26componentId=45802ffe-d349-4642-8c5a-7124b6ba5603%26forceLocale={locale}",
+      "scopes": ["team", "groupChat"],
+      "canUpdateConfiguration": true,
+      "context": [
+        "channelTab",
+        "privateChatTab",
+        "meetingChatTab",
+        "meetingDetailsTab",
+        "meetingSidePanel",
+        "meetingStage"
+      ],
+      "sharePointPreviewImage": "Relative path to a tab preview image for use in SharePoint — 1024px X 768",
+      "supportedSharePointHosts": ["sharePointFullPage", "sharePointWebPart"]
+    }
+  ],
+  "staticTabs": [
+    {
+      "entityId": "unique Id for the page entity",
+      "scopes": ["personal"],
+      "context": ["personalTab", "channelTab"],
+      "name": "My SPFx Personal Tab",
+      "contentUrl": "https://{teamSiteDomain}/_layouts/15/TeamsLogon.aspx?SPFX=true&dest=/_layouts/15/teamshostedapp.aspx%3Fteams%26personal%26componentId=45802ffe-d349-4642-8c5a-7124b6ba5603%26forceLocale={locale}",
+      "websiteUrl": "https://contoso.com/content (displayed in web browser)",
+      "searchUrl": "https://contoso.com/content (displayed in web browser)"
+    }
+  ],
+  "validDomains": [
+    "contoso.com",
+    "mysite.someplace.com",
+    "othersite.someplace.com"
+  ],
+  "webApplicationInfo": {
+    "id": "00000003-0000-0ff1-ce00-000000000000",
+    "resource": "https://{teamSiteDomain}"
+  }
+}
