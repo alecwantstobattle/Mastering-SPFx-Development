@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "custom-gulp-task-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/customGulpTask/CustomGulpTaskWebPart.js",
+          "manifest": "./src/webparts/customGulpTask/CustomGulpTaskWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CustomGulpTaskWebPartStrings": "lib/webparts/customGulpTask/loc/{locale}.js"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "custom-gulp-task",
+    "libraryId": "2aa33239-48ce-41f4-8e47-75009fe0b8b5",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "custom-gulp-task",
+    "solutionShortDescription": "custom-gulp-task description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
