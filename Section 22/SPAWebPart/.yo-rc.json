@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "crud-react-web-part",
+    "libraryId": "47a47e60-7374-46d7-ba2a-7b2757e619c1",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "crud-react-web-part",
+    "solutionShortDescription": "crud-react-web-part description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
