@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "microsoft-teams-tab-client-side-solution",
+    "id": "8ce921da-fba6-47a1-bbdc-b2f8857a369b",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "microsoft-teams-tab description"
+      },
+      "longDescription": {
+        "default": "microsoft-teams-tab description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "microsoft-teams-tab Feature",
+        "description": "The feature that activates elements of the microsoft-teams-tab solution.",
+        "id": "8652790d-8cad-4a9a-9d86-1a78f32c3a56",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/microsoft-teams-tab.sppkg"
+  }
+}
