@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "custom-gulp-sub-task-client-side-solution",
+    "id": "d0713132-3f9b-49c9-92a6-d6880dfdcc71",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "custom-gulp-sub-task description"
+      },
+      "longDescription": {
+        "default": "custom-gulp-sub-task description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "custom-gulp-sub-task Feature",
+        "description": "The feature that activates elements of the custom-gulp-sub-task solution.",
+        "id": "810a4117-4a81-47c6-bcb2-1cf09a9be5f8",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/custom-gulp-sub-task.sppkg"
+  }
+}
