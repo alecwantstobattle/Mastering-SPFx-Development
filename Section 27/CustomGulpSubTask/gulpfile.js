@@ -58,6 +58,42 @@ const subtaskBuildChild2 = build.subTask(
 
 build.task('subtask-buildChild2', subtaskBuildChild2);
 
+const postBundlesubTask = build.subTask(
+  'post-bundle',
+  function (gulp, buildOptions, done) {
+    this.log('Message from Post Bundle Task');
+    done();
+  }
+);
+build.rig.addPostBundleTask(postBundlesubTask);
+
+const preBuildSubTask = build.subTask(
+  'pre-build',
+  function (gulp, buildOptions, done) {
+    this.log('Message from PreBuild Task');
+    done();
+  }
+);
+build.rig.addPreBuildTask(preBuildSubTask);
+
+const postBuildSubTask = build.subTask(
+  'post-build',
+  function (gulp, buildOptions, done) {
+    this.log('Message from PostBuild Task');
+    done();
+  }
+);
+build.rig.addPostBuildTask(postBuildSubTask);
+
+const postTypeScriptSubTask = build.subTask(
+  'post-typescript',
+  function (gulp, buildOptions, done) {
+    this.log('Message from PostTypeScript task');
+    done();
+  }
+);
+build.rig.addPostTypescriptTask(postTypeScriptSubTask);
+
 build.initialize(gulp);
 
 if (gulp.tasks['build']) {
